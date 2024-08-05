@@ -1,0 +1,91 @@
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+# global settings
+yabai -m config layout			     bsp
+yabai -m config auto-balance                 off
+#yabai -m config focus_follows_mouse          autoraise
+#yabai -m config mouse_follows_focus          on
+#yabai -m config active_window_opacity        0.6
+#yabai -m config normal_window_opacity        1.0
+yabai -m config mouse_modifier               fn
+yabai -m config mouse_action1                move
+yabai -m config mouse_action2                resize
+yabai -m config mouse_drop_action            swap
+yabai -m config \
+	window_shadow off \	
+
+# window focus settings
+yabai -m signal --add event=window_destroyed action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus recent || yabai -m window --focus first"
+yabai -m signal --add event=application_terminated action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus recent || yabai -m window --focus first"
+
+# focus window after active space changes
+yabai -m signal --add event=space_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id)"
+
+# focus window after active display changes
+yabai -m signal --add event=display_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id)"
+
+# padding settings
+yabai -m config top_padding 10
+yabai -m config bottom_padding 10
+yabai -m config left_padding 10
+yabai -m config right_padding 10
+yabai -m config window_gap 5
+
+# specific window rules
+yabai -m rule --add app="^System Settings$" sticky=on sub-layer=above
+yabai -m rule --add app="^Simulator" manage=on
+yabai -m rule --add app="^League of Legends" manage=off
+yabai -m rule --add app="^Finder" manage=off
+#yabai -m rule --add app="^Notas" manage=off
+yabai -m rule --add app="^Monitor de Atividade" manage=off
+yabai -m rule --add app="^Pré-Visualização" manage=off
+yabai -m rule --add app="^Riot Client" manage=off
+
+# space setup settings
+for _ in $(yabai -m query --spaces | jq '.[].index | select(. > 6)'); do
+  yabai -m space --destroy 8
+done
+
+function setup_space {
+  local idx="$1"
+  local name="$2"
+  local space=
+  echo "setup space $idx : $name"
+
+  space=$(yabai -m query --spaces --space "$idx")
+  if [ -z "$space" ]; then
+    yabai -m space --create
+  fi
+
+  yabai -m space "$idx" --label "$name"
+}
+
+setup_space 1 chrome
+setup_space 2 xcode
+setup_space 3 slack
+setup_space 4 utils
+setup_space 5 terminal
+setup_space 6 social
+#setup_space 7 zap
+
+# move some apps automatically to specific spaces
+yabai -m rule --add app="^Slack" space=^slack
+#yabai -m rule --add app="Slack" space=^slack
+yabai -m rule --add app="^Xcode" space=^xcode
+yabai -m rule --add app="^Code" space=^xcode
+yabai -m rule --add app="^Simulator" space=^xcode
+yabai -m rule --add app="^Google(.+)" space=^chrome
+yabai -m rule --add app="Arc" space=^chrome
+#yabai -m rule --add app="^Finder" space=^utils
+yabai -m rule --add app="^Notas" space=^social
+yabai -m rule --add app="^Alacritty" space=^terminal
+yabai -m rule --add app="^iTerm" space=^terminal
+yabai -m rule --add app="^GitHub(.+)" space=^utils
+yabai -m rule --add app="^Spotify" space=^social
+yabai -m rule --add app="^Discord" space=^social
+#yabai -m rule --add app="WhatsApp" space=^zap
+
+borders active_color="gradient(top_left=0xffff9e64,bottom_right=0xffbb9af7)" inactive_color="gradient(top_left=0x40ff9e64,bottom_right=0x40bb9af7)" width=5 2>/dev/null 1>&2 &
+
+echo "yabai configuration loaded.."

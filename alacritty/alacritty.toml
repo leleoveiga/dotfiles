@@ -1,0 +1,7 @@
+[window]
+decorations = "Buttonless"
+opacity = 0.75
+blur = true
+
+[font]
+size = 16
