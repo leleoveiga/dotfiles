@@ -6,14 +6,13 @@ yabai -m config layout			     bsp
 yabai -m config auto-balance                 off
 #yabai -m config focus_follows_mouse          autoraise
 #yabai -m config mouse_follows_focus          on
-#yabai -m config active_window_opacity        0.6
-#yabai -m config normal_window_opacity        1.0
 yabai -m config mouse_modifier               fn
 yabai -m config mouse_action1                move
 yabai -m config mouse_action2                resize
 yabai -m config mouse_drop_action            swap
-yabai -m config \
-	window_shadow off \	
+#yabai -m config window_shadow on
+#yabai -m config active_window_opacity 0.95
+#yabai -m config normal_window_opacity 0.9
 
 # window focus settings
 yabai -m signal --add event=window_destroyed action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus recent || yabai -m window --focus first"
@@ -34,13 +33,25 @@ yabai -m config window_gap 5
 
 # specific window rules
 yabai -m rule --add app="^System Settings$" sticky=on sub-layer=above
+yabai -m rule --add app="Ajustes do Sistema" sticky=on sub-layer=above
 yabai -m rule --add app="^Simulator" manage=on
 yabai -m rule --add app="^League of Legends" manage=off
+yabai -m rule --add app="^Utilitário de Compressão" manage=off
 yabai -m rule --add app="^Finder" manage=off
-#yabai -m rule --add app="^Notas" manage=off
+yabai -m rule --add app="^Mail" manage=off
+yabai -m rule --add app="^Notas" manage=off
+yabai -m rule --add app="Calendário" manage=off
+yabai -m rule --add app="^Obsidian" manage=off
+yabai -m rule --add app="^Instruments" manage=off
+yabai -m rule --add app="^Python" manage=off
+#yabai -m rule --add app="^Notas" sticky=on sub-layer=above
+#yabai -m rule --add app="^Obsidian" sticky=on sub-layer=above
 yabai -m rule --add app="^Monitor de Atividade" manage=off
 yabai -m rule --add app="^Pré-Visualização" manage=off
+yabai -m rule --add app="^QuickTime Player" manage=off
 yabai -m rule --add app="^Riot Client" manage=off
+yabai -m rule --add title="^Leonardo" manage=off
+yabai -m rule --add title="Developer Tools" manage=off sub-layer=above
 
 # space setup settings
 for _ in $(yabai -m query --spaces | jq '.[].index | select(. > 6)'); do
@@ -64,28 +75,24 @@ function setup_space {
 setup_space 1 chrome
 setup_space 2 xcode
 setup_space 3 slack
-setup_space 4 utils
-setup_space 5 terminal
-setup_space 6 social
+setup_space 4 terminal
+setup_space 5 social
+setup_space 6 utils
 #setup_space 7 zap
 
 # move some apps automatically to specific spaces
 yabai -m rule --add app="^Slack" space=^slack
-#yabai -m rule --add app="Slack" space=^slack
 yabai -m rule --add app="^Xcode" space=^xcode
 yabai -m rule --add app="^Code" space=^xcode
 yabai -m rule --add app="^Simulator" space=^xcode
 yabai -m rule --add app="^Google(.+)" space=^chrome
-yabai -m rule --add app="Arc" space=^chrome
-#yabai -m rule --add app="^Finder" space=^utils
-yabai -m rule --add app="^Notas" space=^social
+yabai -m rule --add app="^Arc" space=^chrome
 yabai -m rule --add app="^Alacritty" space=^terminal
-yabai -m rule --add app="^iTerm" space=^terminal
+yabai -m rule --add app="^WezTerm" space=^terminal
+yabai -m rule --add app="^iTerm2" space=^terminal
 yabai -m rule --add app="^GitHub(.+)" space=^utils
 yabai -m rule --add app="^Spotify" space=^social
 yabai -m rule --add app="^Discord" space=^social
-#yabai -m rule --add app="WhatsApp" space=^zap
-
-borders active_color="gradient(top_left=0xffff9e64,bottom_right=0xffbb9af7)" inactive_color="gradient(top_left=0x40ff9e64,bottom_right=0x40bb9af7)" width=5 2>/dev/null 1>&2 &
+yabai -m rule --add app="WhatsApp" space=^social
 
 echo "yabai configuration loaded.."

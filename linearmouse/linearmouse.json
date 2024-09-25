@@ -1,0 +1,55 @@
+{
+  "schemes" : [
+    {
+      "scrolling" : {
+        "speed" : {
+          "vertical" : 0
+        },
+        "acceleration" : {
+          "vertical" : 1
+        },
+        "reverse" : {
+          "vertical" : false
+        },
+        "distance" : {
+          "vertical" : "auto"
+        }
+      },
+      "pointer" : {
+        "speed" : 0.0689655172413792768,
+        "disableAcceleration" : false,
+        "acceleration" : 0.6875
+      },
+      "if" : {
+        "device" : {
+          "productID" : "0x0",
+          "vendorID" : "0x0",
+          "category" : "trackpad",
+          "productName" : "Apple Internal Keyboard \/ Trackpad"
+        }
+      }
+    },
+    {
+      "scrolling" : {
+        "acceleration" : {
+          "vertical" : 1
+        },
+        "reverse" : {
+          "vertical" : true
+        }
+      },
+      "pointer" : {
+        "disableAcceleration" : true
+      },
+      "if" : {
+        "device" : {
+          "vendorID" : "0x46d",
+          "category" : "mouse",
+          "productName" : "USB Receiver",
+          "productID" : "0xc547"
+        }
+      }
+    }
+  ],
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.0"
+}

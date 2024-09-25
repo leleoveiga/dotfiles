@@ -1,0 +1,64 @@
+hyper - r : yabai --restart-service
+hyper - s : skhd --restart-service
+
+#cmd - 0 : open 'google chrome'
+
+# maximize a window
+shift + alt - m : yabai -m window --toggle zoom-fullscreen
+
+# balance out tree of windows (resize to occupy same area)
+ctrl + alt - e : yabai -m space --balance
+
+# resize window
+shift + alt - return : yabai -m window --toggle zoom-fullscreen
+shift + alt - h : yabai -m window --resize right:-40:0
+shift + alt - j : yabai -m window --resize bottom:0:40
+shift + alt - k : yabai -m window --resize bottom:0:-40
+shift + alt - l : yabai -m window --resize right:40:0
+
+# focus window
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - h : yabai -m window --focus west
+alt - l : yabai -m window --focus east
+
+# swap window
+ctrl + alt - left : yabai -m window --swap west
+ctrl + alt - h : yabai -m window --swap west
+ctrl + alt - down : yabai -m window --swap south
+ctrl + alt - up : yabai -m window --swap north
+ctrl + alt - right : yabai -m window --swap east
+ctrl + alt - l : yabai -m window --swap east
+
+ctrl + shift + alt - right : sh ~/.config/yabai/cycle_clockwise.sh
+
+# float / unfloat window and center on screen
+shift + alt - space : yabai -m window --toggle float
+
+# focus space
+alt - 0x32 : sh ~/.config/yabai/space_cycle_next.sh
+alt + shift - 0x32 : sh ~/.config/yabai/space_cycle_prev.sh
+
+alt - tab : yabai -m space --focus recent
+alt - a : yabai -m space --focus chrome
+alt - s : yabai -m space --focus xcode
+alt - d : yabai -m space --focus slack
+alt - f : yabai -m space --focus terminal
+alt - r : yabai -m space --focus utils
+alt - e : yabai -m space --focus social
+
+# send window and focus
+alt - m : yabai -m window --space next || yabai -m window --space first && yabai -m space --focus next || yabai -m space --focus first
+
+# space create/delete
+alt - n : yabai -m space --create  && yabai -m window --space last && yabai -m space --focus last
+shift + alt - a : yabai -m window --space chrome && yabai -m space --focus chrome
+shift + alt - s : yabai -m window --space xcode && yabai -m space --focus xcode
+shift + alt - d : yabai -m window --space slack && yabai -m space --focus slack
+shift + alt - f : yabai -m window --space terminal && yabai -m space --focus terminal
+shift + alt - r : yabai -m window --space utils && yabai -m space --focus utils
+shift + alt - e : yabai -m window --space social && yabai -m space --focus social
+
+shift + alt - n : yabai -m space --destroy
+
+
