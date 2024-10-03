@@ -1,5 +1,5 @@
 
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+#export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -131,12 +131,7 @@ alias gst="git stash"
 alias dev="git switch develop"
 alias slog="ls /tmp/skhd_*.log"
 alias lg="lazygit"
-
-export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Users/m2y/.nvm/versions/node/v18.14.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin"
-# export PATH="$PATH:[PATH_OF_FLUTTER_GIT_DIRECTORY]/bin"
-PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
-export TOPAZ_USERNAME=zma-at-536598375304
-export TOPAZ_PASSWORD=gKnkWD4BqLq0El7dPOvXUUiib%2FkABnKKcWktarjxXG0%3D
+alias frep="~/.config/scripts/frep.sh"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -160,6 +155,12 @@ export _ZO_FZF_OPTS='
     --preview "([[ -e '{2..}/README.md' ]] && bat --color=always --style=numbers --line-range=:50 '{2..}/README.md') || exa --color=always --group-directories-first --oneline {2..}"
 '
 eval "$(zoxide init zsh)"
+export GEM_HOME="${HOME}/.gem"
+export PATH="$GEM_HOME/bin:$PATH"
+export VIMINIT='source ~/.config/vim/vimrc'
+eval "$(rbenv init -)"
+export PATH="/usr/local/bin/swiftgen:$PATH"
 
+export PATH="/Users/magalu/.mint/bin:$PATH"
 
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
