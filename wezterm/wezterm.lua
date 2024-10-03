@@ -13,6 +13,13 @@ config.tab_bar_at_bottom = true
 
 config.window_background_opacity = 0.75
 config.macos_window_background_blur = 30
-config.window_decorations = "TITLE | RESIZE | MACOS_FORCE_ENABLE_SHADOW"
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE | MACOS_FORCE_ENABLE_SHADOW"
+
+config.window_padding = {
+  left = 15,
+  right = 15,
+  top = 55,
+  bottom = 0,
+}
 
 return config
