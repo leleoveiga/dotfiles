@@ -137,9 +137,13 @@ alias frep="~/.config/scripts/frep.sh"
 alias ls="eza -a --icons=always --long --git --no-permissions --no-user --modified -s name -s type"
 alias fzf="fzf --preview 'bat --color=always {}' --preview-window '~3'"
 alias cldd="rm -rf ~/Library/Developer/Xcode/DerivedData"
-alias xp="~/Magalu/exec_proj.sh"
-alias gg="z green"
 alias mp="make project"
+alias gg="z green-mile-ios"
+alias xk="fastlane xcode_kill"
+alias cl="clear"
+alias szs="source ~/.zshrc"
+alias rb="bundle exec make rebuild"
+alias npod="nvim Podfiles/InternalPodDefinitions.rb"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -163,13 +167,15 @@ export _ZO_FZF_OPTS='
     --preview "([[ -e '{2..}/README.md' ]] && bat --color=always --style=numbers --line-range=:50 '{2..}/README.md') || exa --color=always --group-directories-first --oneline {2..}"
 '
 eval "$(zoxide init zsh)"
-export GEM_HOME="${HOME}/.gem"
-export PATH="$GEM_HOME/bin:$PATH"
-#export VIMINIT='source ~/.config/vim/vimrc'
 eval "$(rbenv init -)"
 export PATH="/usr/local/bin/swiftgen:$PATH"
+export PATH="~/.mint/bin:$PATH"
+export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+export XDG_CONFIG_HOME="$HOME/.config"
 
-export PATH="/Users/magalu/.mint/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/curl/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/curl/include"
 
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -185,3 +191,5 @@ bindkey '^[[B' history-search-forward
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+#. /opt/homebrew/opt/asdf/libexec/asdf.sh
