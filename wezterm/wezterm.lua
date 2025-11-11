@@ -1,9 +1,10 @@
 local wezterm = require("wezterm")
+local act = wezterm.action
 local config = {}
 
 config.color_scheme = "Dracula (Official)"
 config.font = wezterm.font("Roboto Mono")
-config.font_size = 16.0
+config.font_size = 14.0
 
 config.send_composed_key_when_left_alt_is_pressed = true
 config.show_new_tab_button_in_tab_bar = false
@@ -27,6 +28,11 @@ config.keys = {
 		key = "w",
 		mods = "CMD",
 		action = wezterm.action.CloseCurrentTab({ confirm = false }),
+	},
+	{
+		key = "f",
+		mods = "SUPER",
+		action = act.Search({ CaseInSensitiveString = "" }),
 	},
 }
 
